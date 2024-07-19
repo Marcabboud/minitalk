@@ -1,20 +1,32 @@
-#include"minitalk.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mabboud <mabboud@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/22 14:00:31 by mabboud           #+#    #+#             */
+/*   Updated: 2023/11/22 17:18:45 by mabboud          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minitalk.h"
 
 static	int	is_nb(char	*str)
 {
-	while(*str)
+	while (*str)
 	{
 		if (*str < '0' && *str > '9')
-			return(0);
+			return (0);
 		str++;
 	}
-	return(1);
+	return (1);
 }
 
 static	void	send_char(int pid, char c)
 {
 	int	bit;
-	
+
 	bit = 0;
 	while (bit < 8)
 	{
@@ -30,7 +42,7 @@ static	void	send_char(int pid, char c)
 static void	client(char *apid, char *msg)
 {
 	int	pid;
-	
+
 	pid = ft_atoi(apid);
 	while (*msg)
 	{
@@ -43,11 +55,11 @@ static void	client(char *apid, char *msg)
 int	main(int ac, char **av)
 {
 	if (ac != 3)
-		return(0);
-	if (!is_digit(av[1])
-		return(0);
+		return (0);
+	if (!is_nb(av[1]))
+		return (0);
 	if (av[2][0] == '\0')
-		return(0);
+		return (0);
 	client(av[1], av[2]);
-	return(1);
+	return (1);
 }
